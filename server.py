@@ -24,3 +24,11 @@ def set_logger():
         rotation='1 day',
         compression='zip'
     )
+
+
+def get_settings() -> dict:
+    settings = load_settings(handler='c')
+    if not settings:
+        logger.error('Settings empty')
+        sys.exit()
+    return settings
