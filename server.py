@@ -26,6 +26,15 @@ def set_logger():
     )
 
 
+def create_bot(settings: dict) -> Dispatcher:
+    bot = Bot(token=settings['API_TOKEN'])
+    return Dispatcher(bot)
+
+
+def polling_bot(dp: Dispatcher) -> None:
+    executor.start_polling(dp, skip_updates=True)
+
+
 def get_settings() -> dict:
     settings = load_settings(handler='c')
     if not settings:
